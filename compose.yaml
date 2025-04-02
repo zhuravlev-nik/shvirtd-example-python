@@ -20,7 +20,7 @@ services:
     depends_on:
       mysql:
         condition: service_healthy
-    restart: unless-stopped
+    restart: on-failure
     networks:
       backend:
         ipv4_address: 172.20.0.5
@@ -35,7 +35,7 @@ services:
       test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
       timeout: 20s
       retries: 10
-    restart: unless-stopped
+    restart: on-failure
     networks:
       backend:
         ipv4_address: 172.20.0.10
